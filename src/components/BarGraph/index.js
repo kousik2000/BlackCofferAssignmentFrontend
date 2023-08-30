@@ -15,6 +15,8 @@ const BarGraph = (props) => {
       entry.topic === topic
     ));
 
+    console.log(filteredData,"from data");
+
     const chartData = filteredData.map((entry) => ({
       yearRange: entry.start_year !== null && entry.end_year !== null
         ? `${entry.start_year}-${entry.end_year}`
