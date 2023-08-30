@@ -1,43 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Chart } from "react-google-charts";
-import { Puff } from  'react-loader-spinner';
+import { Puff } from 'react-loader-spinner';
 import './index.css';
 
 const BarGraph = (props) => {
-  const { country, region, sector, topic } = props;
-  const [fetchedData, setFetchedData] = useState({});
+  const { data, country, sector, topic } = props;
+  const [fetchedData, setFetchedData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const apiUrl = `https://black-coffer-assignment-backend.vercel.app/getIntensity?country=${country}&sector=${sector}&topic=${topic}`;
-    
-    fetch(apiUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        console.log(region);
+    const filteredData = data.filter((entry) => (
+      entry.country === country &&
+      entry.sector === sector &&
+      entry.topic === topic
+    ));
 
-        const dataArray = Object.entries(data).map(([yearRange, intensity]) => ({
-          yearRange,
-          intensity,
-        }));
+    const chartData = filteredData.map((entry) => ({
+      yearRange: entry.start_year !== null && entry.end_year !== null
+        ? `${entry.start_year}-${entry.end_year}`
+        : entry.start_year === null
+          ? `Unknown-${entry.end_year}`
+          : `${entry.start_year}-Unknown`,
+      intensity: entry.intensity,
+    }));
 
-        dataArray.sort((a, b) => a.yearRange.localeCompare(b.yearRange));
-
-        const chartData = [["Year Range", "Intensity"], ...dataArray.map(item => [item.yearRange, item.intensity])];
-
-        setFetchedData(chartData);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  }, [country, sector, topic, region]);
+    setFetchedData(chartData);
+    setIsLoading(false);
+  }, [data, country, sector, topic]); // Added 'data' as a dependency
 
   return (
     <div className='chart-container'>
