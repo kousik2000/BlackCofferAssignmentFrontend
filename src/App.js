@@ -128,7 +128,7 @@ const App = () => {
         </select>
       </div>
       </div>
-      <BarGraph data={data} country={country} region={region} sector={sector} topic={topic}/>
+      <BarGraph country={country} region={region} sector={sector} topic={topic}/>
       <Card data={data} dataCountry={country} dataRegion={region} dataSector={sector} dataTopic={topic}/>
     </div>
   );
