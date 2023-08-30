@@ -1,0 +1,21 @@
+.bar-chart-container{
+    border:1px solid grey;
+    border-radius: 15px;
+    padding:10px;
+    margin-left:50px;
+    margin-right:50px;
+    margin-top: 30px;
+    width:100%;
+}
+.chart-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+}
+.error-data{
+    color:red;
+    margin-top:10px;
+    font-size: 20px;
+    text-align: center;
+}
