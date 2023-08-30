@@ -42,3 +42,9 @@ select{
 .select{
   margin-left: 20px;
 }
+
+@media (max-width: 720px){
+  .select{
+    margin: 3px;
+  }
+}

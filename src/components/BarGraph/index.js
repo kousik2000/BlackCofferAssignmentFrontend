@@ -12,7 +12,7 @@ const BarGraph = (props) => {
   const [isLoading,setIsLoading] = useState(true)
   
   useEffect(() => {
-    axios.get(`https://black-coffer-assignment-backend.vercel.app/getIntensity?country=${country}&sector=${sector}&topic=${topic}`)
+    axios.get(`http://localhost:9000/getIntensity?country=${country}&sector=${sector}&topic=${topic}`)
       .then(response => {
         console.log(response.data);
         console.log(region);

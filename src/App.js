@@ -18,7 +18,7 @@ const App = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('https://black-coffer-assignment-backend.vercel.app/getdata')
+    fetch('http://localhost:9000/getdata')
       .then(response => response.json())
       .then(data => {
         console.log(data);
