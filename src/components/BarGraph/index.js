@@ -60,7 +60,7 @@ const BarGraph = (props) => {
         loader={<div>Loading Chart</div>}
         data={fetchedData}
         options={{
-            title: 'Intensity for United States of America',
+            title: `Intensity for ${country}`,
             hAxis: { title: 'Intensity' },
             vAxis: { title: 'Year Range' },
             animation: {
